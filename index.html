@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Punjab Jewellers | Luxury Jewellery</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#fffaf0;color:#38251b;font-family:Georgia,serif}
+header{background:#4b111e;color:#f8e4ae;text-align:center;padding:28px 10px}
+header h1{letter-spacing:4px;font-size:34px;margin:0}
+header p{letter-spacing:3px;font-size:12px}
+nav{display:flex;justify-content:center;flex-wrap:wrap;gap:20px;background:#f0dfbb;padding:17px}
+nav a{color:#4b111e;text-decoration:none;font-weight:bold}
+.hero{text-align:center;padding:80px 15px;background:linear-gradient(135deg,#ead3a1,#fff8e8,#d7b875)}
+.hero h2{font-size:clamp(35px,6vw,60px);margin:10px}
+.hero p{line-height:1.8}
+button,.btn{background:#4b111e;color:#ffe9b6;border:0;padding:13px 20px;cursor:pointer;text-decoration:none;display:inline-block;margin:5px}
+section{padding:40px 6%}
+.title{text-align:center;color:#4b111e;font-size:30px}
+.categories,.products{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:18px}
+.category{background:#f4e6c8;padding:25px 10px;text-align:center;cursor:pointer;border:1px solid #d6bd82}
+.category:hover{background:#e6d1a5}
+.product{background:white;border:1px solid #e1d0a9;text-align:center;padding:18px}
+.photo{font-size:65px;background:#f8efd9;padding:22px}
+.price{color:#90641c;font-weight:bold}
+input,select,textarea{padding:12px;border:1px solid #c6ad76;width:100%;margin:5px 0}
+#cart{background:#f4e6c8}
+footer{background:#351019;color:#f8e4ae;text-align:center;padding:30px}
+.note{font-size:13px;line-height:1.7}
+</style>
+</head>
+<body>
+
+<header>
+<h1>PUNJAB JEWELLERS</h1>
+<p>TIMELESS ELEGANCE • TRUST • TRADITION</p>
+</header>
+
+<nav>
+<a href="#home">Home</a>
+<a href="#collections">Collections</a>
+<a href="#gold">Gold Biscuits</a>
+<a href="#budget">Shop by Budget</a>
+<a href="#cart">My Cart</a>
+<a href="#contact">Contact</a>
+</nav>
+
+<div class="hero" id="home">
+<p>✦ A LEGACY OF ELEGANCE ✦</p>
+<h2>Jewellery That Tells<br>Your Story</h2>
+<p>Discover beautiful designs for your precious moments.</p>
+<a class="btn" href="#collections">EXPLORE COLLECTION</a>
+<a class="btn" href="#gold">GOLD BISCUITS</a>
+</div>
+
+<section id="collections">
+<h2 class="title">Explore Our Collections</h2>
+<div class="categories">
+<div class="category" onclick="show('Gold Jewellery')">💛<h3>Gold Jewellery</h3></div>
+<div class="category" onclick="show('Diamond Jewellery')">💎<h3>Diamond Jewellery</h3></div>
+<div class="category" onclick="show('Bridal Collection')">👑<h3>Bridal Collection</h3></div>
+<div class="category" onclick="show('Earrings')">✨<h3>Earrings</h3></div>
+<div class="category" onclick="show('Rings')">💍<h3>Rings</h3></div>
+<div class="category" onclick="show('Bangles')">🌟<h3>Bangles</h3></div>
+<div class="category" onclick="show('Mangalsutra')">❤️<h3>Mangalsutra</h3></div>
+<div class="category" onclick="show('Men Jewellery')">⌚<h3>Men's Jewellery</h3></div>
+</div>
+</section>
+
+<section id="budget">
+<h2 class="title">Shop by Budget</h2>
+<div style="text-align:center">
+<button onclick="budget(10000)">Under ₹10,000</button>
+<button onclick="budget(25000)">Under ₹25,000</button>
+<button onclick="budget(50000)">Under ₹50,000</button>
+<button onclick="budget(100000)">Under ₹1 Lakh</button>
+<button onclick="budget(500000)">Under ₹5 Lakh</button>
+<button onclick="render(items)">Show All</button>
+</div>
+</section>
+
+<section>
+<h2 class="title" id="heading">Featured Jewellery</h2>
+<input id="search" placeholder="Search jewellery..." oninput="searchItems()">
+<div class="products" id="products"></div>
+<p class="note">Important: These are demonstration products and sample prices, not verified store inventory or current gold rates.</p>
+</section>
+
+<section id="gold">
+<h2 class="title">Gold Bars & Biscuits</h2>
+<p style="text-align:center">Select a weight to enquire about store pickup.</p>
+<div class="products" id="bars"></div>
+<p class="note">Purity, refinery certificate, availability and final price must be confirmed by the store.</p>
+</section>
+
+<section id="cart">
+<h2 class="title">Your Shopping Cart</h2>
+<div id="cartitems">Your cart is empty.</div>
+<h3 id="total">Total: ₹0</h3>
+</section>
+
+<section id="contact">
+<h2 class="title">Contact Punjab Jewellers</h2>
+<p style="text-align:center">Send your enquiry details to prepare a request.</p>
+<form id="form">
+<input id="name" placeholder="Your full name" required>
+<input id="mobile" type="tel" placeholder="Mobile number" required>
+<input id="email" type="email" placeholder="Email (optional)">
+<select id="interest">
+<option>Gold Jewellery</option>
+<option>Diamond Jewellery</option>
+<option>Bridal Collection</option>
+<option>Gold Biscuit - Store Pickup</option>
+<option>Other Enquiry</option>
+</select>
+<select id="range">
+<option>Select your budget</option>
+<option>Under ₹10,000</option>
+<option>₹10,000–₹25,000</option>
+<option>₹25,000–₹50,000</option>
+<option>₹50,000–₹1 lakh</option>
+<option>₹1 lakh–₹5 lakh</option>
+<option>₹5 lakh+</option>
+</select>
+<textarea id="message" placeholder="Your preferred design or gold biscuit weight"></textarea>
+<button type="submit">Prepare Enquiry</button>
+</form>
+<div id="result"></div>
+<p class="note">This demo does not send enquiries to the store. A secure booking service must be connected for real orders.</p>
+</section>
+
+<footer>
+<h2>PUNJAB JEWELLERS</h2>
+<p>Sangita Road, Shahganj, Agra, Uttar Pradesh, India</p>
+<p>Elegant Designs. Timeless Memories.</p>
+</footer>
+
+<script>
+const items=[
+{id:1,name:"Classic Gold Ring",cat:"Rings",price:12000,icon:"💍"},
+{id:2,name:"Gold Earrings",cat:"Earrings",price:18000,icon:"✨"},
+{id:3,name:"Traditional Bangles",cat:"Bangles",price:48000,icon:"🌟"},
+{id:4,name:"Diamond Pendant",cat:"Diamond Jewellery",price:25000,icon:"💎"},
+{id:5,name:"Bridal Necklace",cat:"Bridal Collection",price:95000,icon:"👑"},
+{id:6,name:"Classic Mangalsutra",cat:"Mangalsutra",price:22000,icon:"❤️"},
+{id:7,name:"Men's Gold Chain",cat:"Men Jewellery",price:50000,icon:"⛓️"},
+{id:8,name:"Everyday Gold Pendant",cat:"Gold Jewellery",price:9000,icon:"✨"}
+];
+let cart=[];
+
+function render(list){
+document.getElementById('products').innerHTML=list.map(p=>`
+<div class="product">
+<div class="photo">${p.icon}</div>
+<h3>${p.name}</h3><p>${p.cat}</p>
+<p class="price">Sample: ₹${p.price.toLocaleString('en-IN')}</p>
+<button onclick="details(${p.id})">View Details</button>
+<button onclick="add(${p.id})">Add to Cart</button>
+<div id="d${p.id}" style="display:none;text-align:left">
+<p>Product: ${p.name}</p>
+<p>Category: ${p.cat}</p>
+<p>Price shown is an example only.</p>
+<p>Actual weight, purity, making charges, taxes and final price require store confirmation.</p>
+</div></div>`).join('');
+}
+function details(id){
+let e=document.getElementById('d'+id);
+e.style.display=e.style.display==='none'?'block':'none';
+}
+function add(id){
+cart.push(items.find(p=>p.id===id));
+updateCart();
+}
+function updateCart(){
+document.getElementById('cartitems').innerHTML=cart.length?
+cart.map((p,i)=>`${p.name} — ₹${p.price.toLocaleString('en-IN')} <button onclick="removeItem(${i})">Remove</button>`).join('<hr>'):
+'Your cart is empty.';
+document.getElementById('total').textContent='Example total: ₹'+cart.reduce((s,p)=>s+p.price,0).toLocaleString('en-IN');
+}
+function removeItem(i){cart.splice(i,1);updateCart()}
+function budget(max){render(items.filter(p=>p.price<=max));document.getElementById('heading').textContent='Jewellery within ₹'+max.toLocaleString('en-IN')}
+function show(cat){render(items.filter(p=>p.cat===cat));document.getElementById('heading').textContent=cat;document.getElementById('products').scrollIntoView({behavior:'smooth'})}
+function searchItems(){
+let q=document.getElementById('search').value.toLowerCase();
+render(items.filter(p=>(p.name+' '+p.cat).toLowerCase().includes(q)));
+}
+const weights=[1,2,5,10,20,50,100];
+document.getElementById('bars').innerHTML=weights.map(w=>`
+<div class="product"><div class="photo">🪙</div>
+<h3>${w}g Gold Biscuit</h3>
+<p>Purity and certificate to be confirmed.</p>
+<p class="price">Ask store for current price</p>
+<button onclick="book(${w})">Book Store Pickup</button></div>`).join('');
+function book(w){
+document.getElementById('interest').value='Gold Biscuit - Store Pickup';
+document.getElementById('message').value=w+'g gold biscuit: please confirm availability and final price.';
+document.getElementById('contact').scrollIntoView({behavior:'smooth'});
+}
+document.getElementById('form').addEventListener('submit',function(e){
+e.preventDefault();
+document.getElementById('result').innerHTML='<h3>Enquiry prepared!</h3><p>This demo has not sent your information to the shop. Please contact the store directly to confirm a real booking.</p>';
+});
+render(items);
+</script>
+</body>
+</html>
